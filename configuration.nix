@@ -37,7 +37,7 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-  onsole = {
+  console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
   };
@@ -100,7 +100,7 @@
     pkgs.git
     pkgs.wget
     pkgs.firefox
-    pkgs.neofetc
+    pkgs.neofetch
     pkgs.htop
     pkgs.tree
     pkgs.fzf
