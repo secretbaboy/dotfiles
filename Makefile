@@ -18,3 +18,4 @@ vm/bootstrap0:
                 ' /mnt/etc/nixos/configuration.nix; \
                 nixos-install --no-root-passwd; \
                 reboot; \
+        "
