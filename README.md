@@ -5,3 +5,7 @@ Pre-requisites:
 
 Step 1:
 make NIXADDR="X.X.X.X" vm/bootstrap0
+
+Step 1:
+make NIXADDR="X.X.X.X" vm/bootstrap
+
