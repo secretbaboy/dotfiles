@@ -1,10 +1,15 @@
 NIXADDR ="172.16.1.164"
 NIXUSER ="kt"
-MAKEFILE_DIR ="/code/nix_config/machines/"
+MAKEFILE_DIR ="/code/nix_config"
 
 vm/copy:
 	rsync -avzhe ssh  \
-		$(MAKEFILE_DIR) $(NIXUSER)@$(NIXADDR):/etc/nixos/; \
+		$(MAKEFILE_DIR)/ $(NIXUSER)@$(NIXADDR):/nix-config/
+vm/switch:
+	ssh $(NIXUSER)@$(NIXADDR) " \
+		sudo ln -fsr /nix-config/machines/vm.nix /etc/nixos/configuration.nix; \
+		sudo nixos-rebuild switch \
+	"
 
 switch:
 	sudo nixos-rebuild switch
@@ -28,6 +33,7 @@ vm/bootstrap0:
 			\  users.users.$(NIXUSER).isNormalUser = true;\n \
 			\  users.users.$(NIXUSER).home = \"/home/kt\" ;\n \
 			\  users.users.$(NIXUSER).extraGroups = \[\"wheel\"\];\n \
+			\  users.users.$(NIXUSER).initialPassword = \"pass-123\"; \
 		' /mnt/etc/nixos/configuration.nix; \
 		nixos-install --no-root-passwd; \
 		reboot; \
@@ -40,6 +46,7 @@ vm/bootstrap:
 		nix-channel --update; \
 	"
 	$(MAKE) vm/copy
+	$(MAKE) vm/switch
 	ssh $(NIXUSER)@$(NIXADDR) " \
 		sudo reboot; \
 	"
