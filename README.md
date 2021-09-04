@@ -1,7 +1,7 @@
 Pre-requisites:
 - Change New NixOS VM root passwd.
 - Another Linux machine with make. 
-- Run Makefile on that Linux machine.
+- Run Makefile on that Linux machine as root.
 - Put configuration.nix and hardware-configuration.nix in /code/nix-config/machines/
 
 Step 1:
